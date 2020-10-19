@@ -37,8 +37,11 @@ getRandomQuote();
 ***/
 function getRandomQuote(){
   let randomNum = Math.floor(Math.random() * quotes.length); //generates a random number between 0 and the length of the quotes array
-  //Test for random number and returned object: console.log(randomNum); console.log(quotes[randomNum]);
-  return quotes[randomNum];
+  
+  //Tests for random number and returned object: console.log(randomNum); console.log(quotes[randomNum]);
+  
+  
+  return quotes[randomNum]; //returns random object from array
 
 };
 
@@ -72,7 +75,7 @@ function printQuote(){
   //add final </p> tag
   quoteString += '</p>';
 
-  console.log(quoteString);
+ //Display and update the HTML to be displayed
   document.getElementById('quote-box').innerHTML = quoteString;
    
   //retrun the completed quote
@@ -87,6 +90,3 @@ function printQuote(){
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
-
-//Call print quote and update html
-document.getElementById('quote-box').innerHTML = printQuote(); 
