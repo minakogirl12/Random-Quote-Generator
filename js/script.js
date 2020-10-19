@@ -20,11 +20,11 @@ const quotes = [
   {quote:'Why are you keeping this curiosity door locked?', source:'Dustin', citation:'Stranger Things', year:'2016',tag:'television show'},
   {quote:'You can\'t stop change, any more than you can sto the suns from setting.', source:'Shmi Skywalker', citation:'Star Wars: Episode I - The Phantom Menace', year:'1999',tag:'movie'},
   {quote:'You know, the very powerful and the very stupid have one thing in common: they don’t alter their views to fit the facts; they alter the facts to fit their views.', source:'The Doctor', citation:'Doctor Who', year:'1977',tag:'science fiction'},
-  {quote:'No matter how much you change, please remeber there are people who care for you.', source:'Usagi Tsukino', citation:'Sailor Moon', year:'1994',tag:'anime'},
+  {quote:'No matter how much you change, please remeber there are people who care for you.', source:'Usagi Tsukino', citation:'Sailor Moon', tag:'anime'},
   {quote:'You are who you are. You have to do what you can', source:'Tomoyo Okazaki', citation:'Clannad', year:'2007',tag:'anime'},
   {quote:'Do not mock a love-smitten mouse', source:'Brain', citation:'Pinky and the Brain', year:'1995',tag:'cartoon'},
   {quote:'Eighty percent of the people in the world are fools and the rest of us are danger of contamination', source:'Walter Matthau', citation:'Hello, Dolly!', year:'1969',tag:'musical'},
-  {quote:'Never let them take the light behind your eyes', source:'My Chemical Romance', citation:'The Light  Behind Your Eyes', year:'2013',tag:'song'},
+  {quote:'Never let them take the light behind your eyes', source:'My Chemical Romance', citation:'The Light  Behind Your Eyes', year:'2013'},
   {quote:'I tried so hard, And got so far, But in the end, It doesn\'t even matter', source:'Linkin Park', citation:'In the End', year:'2002',tag:'song'}
  
 ];
@@ -48,12 +48,37 @@ function getRandomQuote(){
  * Displays the random quote to the user
 ***/
 function printQuote(){
-  let quote = getRandomQuote();
+  let randomQuote = getRandomQuote();
   let quoteString = `
-                <p class="quote"> A random quote </p>
-                <p class="source"></p>
+                <p class="quote">${randomQuote['quote']}</p>
+                <p class="source">${randomQuote['source']}
                 `;
+
+  //determing if the object has other citation, year, or tag property
+  // check for citation and add to string
+  if(Object.keys(randomQuote).includes('citation')){
+    quoteString += `<span class="citation">${randomQuote['citation']}</span>`;
+  }
+  // check for year and add to string
+  if(Object.keys(randomQuote).includes('year')){
+    quoteString += `<span class="year">${randomQuote['year']}</span>`;
+  }
+  // check for tags and add to string
+  if(Object.keys(randomQuote).includes('tag')){
+    quoteString += `<span class="tag">${randomQuote['tag']}</span>`;
+
+  }
+
+  //add final </p> tag
+  quoteString += '</p>';
+
+  console.log(quoteString);
+  document.getElementById('quote-box').innerHTML = quoteString;
+   
+  //retrun the completed quote
+  return quoteString;
 };
+
 
 
 /***
@@ -62,3 +87,6 @@ function printQuote(){
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+//Call print quote and update html
+document.getElementById('quote-box').innerHTML = printQuote(); 
