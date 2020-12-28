@@ -30,6 +30,7 @@ const quotes = [
 ];
 
 getRandomQuote();
+printQuote();
 
 /***
  * @returns a quote object that has been rando mly seleceted using the Math.random() function
